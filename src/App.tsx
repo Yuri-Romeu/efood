@@ -1,3 +1,5 @@
+import Card from './Components/Card';
+import Listagem from './Components/Listagem';
 import Hero from './containers/Hero';
 import { GlobalCSS } from './styles';
 
@@ -6,7 +8,7 @@ function App() {
           <>
                <GlobalCSS />
                <Hero />
-               <div className="container"></div>
+               <Listagem />
           </>
      );
 }
