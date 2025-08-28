@@ -22,11 +22,17 @@ body {
     color: ${Cores.salmao}
 }
 
-.container {
-    max-width: 1024px;
-    width: 100%;
-    padding: 40px;
-    margin: 0 auto;
-  }
+`;
 
+export const Principal = styled.main`
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+`;
+
+export const Cards = styled.div`
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 60px;
+     padding: 60px;
 `;

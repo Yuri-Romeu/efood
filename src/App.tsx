@@ -1,14 +1,21 @@
 import Card from './Components/Card';
-import Listagem from './Components/Listagem';
 import Hero from './containers/Hero';
-import { GlobalCSS } from './styles';
+import { Cards, GlobalCSS, Principal } from './styles';
 
 function App() {
      return (
           <>
                <GlobalCSS />
                <Hero />
-               <Listagem />
+
+               <Principal>
+                    <Cards>
+                         <Card />
+                         <Card />
+                         <Card />
+                         <Card />
+                    </Cards>
+               </Principal>
           </>
      );
 }
