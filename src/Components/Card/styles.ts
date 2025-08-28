@@ -3,11 +3,20 @@ import styled from 'styled-components';
 export const Container = styled.div`
      width: 472px;
      height: 398px;
+     position: relative;
 
      img {
           display: block;
           width: 100%;
      }
+`;
+
+export const BotoesSobreImagem = styled.div`
+     position: absolute;
+     top: 14px;
+     right: 10px;
+     display: flex;
+     gap: 8px;
 `;
 
 export const Titulo = styled.h1`

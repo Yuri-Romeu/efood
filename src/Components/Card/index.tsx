@@ -1,10 +1,24 @@
-import { AreaTexto, Cabecalho, Classificacao, Container, Nota, Texto, Titulo } from './styles';
+import {
+     AreaTexto,
+     BotoesSobreImagem,
+     Cabecalho,
+     Classificacao,
+     Container,
+     Nota,
+     Texto,
+     Titulo,
+} from './styles';
 import estrela from '../../assets/images/star.png';
+import Button from '../Button';
 
 const Card = () => {
      return (
           <Container>
                <img src="https://placehold.co/472x217" alt="" />
+               <BotoesSobreImagem>
+                    <Button>Destaque da semana</Button>
+                    <Button>Japonesa</Button>
+               </BotoesSobreImagem>
                <AreaTexto>
                     <Cabecalho>
                          <Titulo>Hioki Sushi</Titulo>
@@ -20,7 +34,7 @@ const Card = () => {
                          rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem
                          sair do lar com nosso delivery!
                     </Texto>
-                    <button>Saiba mais</button>
+                    <Button clicked>Saiba Mais</Button>
                </AreaTexto>
           </Container>
      );
