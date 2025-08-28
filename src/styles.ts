@@ -28,6 +28,7 @@ export const Principal = styled.main`
      display: flex;
      flex-direction: column;
      align-items: center;
+     margin-bottom: 60px;
 `;
 
 export const Cards = styled.div`

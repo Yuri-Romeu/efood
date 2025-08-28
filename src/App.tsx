@@ -3,6 +3,7 @@ import Hero from './containers/Hero';
 import { Cards, GlobalCSS, Principal } from './styles';
 import sushi from './assets/images/sushi.png';
 import macarrao from './assets/images/macarrao.png';
+import Footer from './containers/Footer';
 
 function App() {
      return (
@@ -58,6 +59,7 @@ function App() {
                          />
                     </Cards>
                </Principal>
+               <Footer />
           </>
      );
 }
