@@ -2,11 +2,15 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
      width: 472px;
-     height: 398px;
+     min-height: 398px;
+     height: 100%;
      position: relative;
 
-     img {
+     img:first-child {
           display: block;
+          max-width: 472px;
+          max-height: 217px;
+          object-fit: cover;
           width: 100%;
      }
 `;

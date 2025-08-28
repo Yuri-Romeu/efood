@@ -11,29 +11,33 @@ import {
 import estrela from '../../assets/images/star.png';
 import Button from '../Button';
 
-const Card = () => {
+type Props = {
+     imagem: string;
+     botoesImagem: string[];
+     titulo: string;
+     nota: number;
+     descricao: string;
+};
+
+const Card = ({ imagem, botoesImagem, titulo, nota, descricao }: Props) => {
      return (
           <Container>
-               <img src="https://placehold.co/472x217" alt="" />
+               <img src={imagem} alt="" />
                <BotoesSobreImagem>
-                    <Button>Destaque da semana</Button>
-                    <Button>Japonesa</Button>
+                    {botoesImagem.map(botao => (
+                         <Button>{botao}</Button>
+                    ))}
                </BotoesSobreImagem>
                <AreaTexto>
                     <Cabecalho>
-                         <Titulo>Hioki Sushi</Titulo>
+                         <Titulo>{titulo}</Titulo>
                          <Classificacao>
-                              <Nota>4.9</Nota>
+                              <Nota>{nota}</Nota>
                               <img src={estrela} alt="Estrela" />
                          </Classificacao>
                     </Cabecalho>
 
-                    <Texto>
-                         Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis
-                         frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega
-                         rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem
-                         sair do lar com nosso delivery!
-                    </Texto>
+                    <Texto>{descricao}</Texto>
                     <Button clicked>Saiba Mais</Button>
                </AreaTexto>
           </Container>
