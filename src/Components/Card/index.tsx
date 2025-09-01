@@ -10,6 +10,7 @@ import {
 } from './styles';
 import estrela from '../../assets/images/star.png';
 import Button from '../Button';
+import { Link } from 'react-router-dom';
 
 type Props = {
      imagem: string;
@@ -38,7 +39,10 @@ const Card = ({ imagem, botoesImagem, titulo, nota, descricao }: Props) => {
                     </Cabecalho>
 
                     <Texto>{descricao}</Texto>
-                    <Button clicked>Saiba Mais</Button>
+
+                    <Link to="/product">
+                         <Button clicked>Saiba Mais</Button>
+                    </Link>
                </AreaTexto>
           </Container>
      );
