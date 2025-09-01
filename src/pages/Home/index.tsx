@@ -3,6 +3,7 @@ import Prato from '../../models/prato';
 import { Cards, Principal } from '../../styles';
 import sushi from '../../assets/images/sushi.png';
 import macarrao from '../../assets/images/macarrao.png';
+import Hero from '../../containers/Hero';
 
 const PratosInicio: Prato[] = [
      {
@@ -53,20 +54,23 @@ const PratosInicio: Prato[] = [
 
 const Home = () => {
      return (
-          <Principal>
-               <Cards>
-                    {PratosInicio.map(prato => (
-                         <Card
-                              key={prato.id}
-                              imagem={prato.imagem}
-                              botoesImagem={prato.botoesImagem}
-                              titulo={prato.titulo}
-                              nota={prato.nota}
-                              descricao={prato.descricao}
-                         />
-                    ))}
-               </Cards>
-          </Principal>
+          <>
+               <Hero />
+               <Principal>
+                    <Cards tipoCards="principal">
+                         {PratosInicio.map(prato => (
+                              <Card
+                                   key={prato.id}
+                                   imagem={prato.imagem}
+                                   botoesImagem={prato.botoesImagem}
+                                   titulo={prato.titulo}
+                                   nota={prato.nota}
+                                   descricao={prato.descricao}
+                              />
+                         ))}
+                    </Cards>
+               </Principal>
+          </>
      );
 };
 

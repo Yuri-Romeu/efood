@@ -1,6 +1,5 @@
 import { Container, Logo as LogoStyled, Titulo } from './styles';
 import logo from '../../assets/images/logo.png';
-import { GlobalCSS } from '../../styles';
 
 const Hero = () => {
      return (

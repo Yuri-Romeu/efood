@@ -1,4 +1,3 @@
-import Hero from './containers/Hero';
 import { GlobalCSS } from './styles';
 
 import Footer from './containers/Footer';
@@ -9,7 +8,6 @@ function App() {
      return (
           <BrowserRouter>
                <GlobalCSS />
-               <Hero />
 
                <Rotas />
                <Footer />

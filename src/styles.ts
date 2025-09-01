@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 import styled from 'styled-components';
 
+type Props = {
+     tipoCards?: 'principal' | 'perfil';
+};
+
 export const Cores = {
      salmao: '#E66767',
      semiBranco: '#FFF8F2',
@@ -31,9 +35,10 @@ export const Principal = styled.main`
      margin-bottom: 60px;
 `;
 
-export const Cards = styled.div`
+export const Cards = styled.div<Props>`
      display: grid;
-     grid-template-columns: repeat(2, 1fr);
+     grid-template-columns: ${props =>
+          props.tipoCards === 'principal' ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)'};
      gap: 60px;
      padding: 60px;
 `;
