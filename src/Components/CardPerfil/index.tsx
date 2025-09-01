@@ -1,17 +1,19 @@
 import { Botao, Container, Descricao, Titulo } from './styles';
-import pizza from '../../assets/images/pizza.png';
 
-const CardPerfil = () => {
+type Props = {
+     imagem: string;
+     titulo: string;
+     descricao: string;
+};
+
+const CardPerfil = ({ imagem, titulo, descricao }: Props) => {
      return (
           <Container>
-               <img src={pizza} alt="" />
+               <img src={imagem} alt="" />
 
-               <Titulo>Pizza Marguerita</Titulo>
+               <Titulo>{titulo}</Titulo>
 
-               <Descricao>
-                    A clássica Marguerita: molho de tomate suculento, mussarela derretida,
-                    manjericão fresco e um toque de azeite. Sabor e simplicidade!
-               </Descricao>
+               <Descricao>{descricao}</Descricao>
 
                <Botao>Adicionar ao carrinho</Botao>
           </Container>

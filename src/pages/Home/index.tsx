@@ -1,5 +1,5 @@
 import Card from '../../Components/Card';
-import Prato from '../../models/prato';
+import { Prato } from '../../models/prato';
 import { Cards, Principal } from '../../styles';
 import sushi from '../../assets/images/sushi.png';
 import macarrao from '../../assets/images/macarrao.png';
