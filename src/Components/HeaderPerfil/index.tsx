@@ -15,12 +15,12 @@ const HeaderPerfil = ({ tipo, capa, nome }: Props) => {
                <Cabecalho>
                     <h4>Restaurantes</h4>
                     <Link to="/">
-                         <img src={capa} alt="" />
+                         <img src={logo} alt="" />
                     </Link>
                     <h4>0 produto(s) no carrinho</h4>
                </Cabecalho>
 
-               <ContainerImage fundo={macarrao}>
+               <ContainerImage fundo={capa}>
                     <Titulo tipo="categoria">{tipo}</Titulo>
 
                     <Titulo tipo="titulo">{nome}</Titulo>

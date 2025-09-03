@@ -15,8 +15,7 @@ export const Container = styled.header`
 `;
 
 export const Cabecalho = styled.div`
-     max-height: 180px;
-     height: 100%;
+     height: 180px;
      display: flex;
      align-items: center;
      justify-content: space-around;
