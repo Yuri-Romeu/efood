@@ -1,71 +1,40 @@
+import { useEffect, useState } from 'react';
 import CardPerfil from '../../Components/CardPerfil';
 import HeaderPerfil from '../../Components/HeaderPerfil';
 import { Cards, Principal } from '../../styles';
-import { PratoPerfil } from '../../models/prato';
-import pizza from '../../assets/images/pizza.png';
-
-const PratosPerfil: PratoPerfil[] = [
-     {
-          id: 1,
-          imagem: pizza,
-          titulo: 'Pizza Marguerita',
-          descricao: `A clássica Marguerita: molho de tomate suculento,
-           mussarela derretida, manjericão fresco e um toque de azeite.
-            Sabor e simplicidade!`,
-     },
-     {
-          id: 2,
-          imagem: pizza,
-          titulo: 'Pizza Marguerita',
-          descricao: `A clássica Marguerita: molho de tomate suculento,
-           mussarela derretida, manjericão fresco e um toque de azeite.
-            Sabor e simplicidade!`,
-     },
-     {
-          id: 3,
-          imagem: pizza,
-          titulo: 'Pizza Marguerita',
-          descricao: `A clássica Marguerita: molho de tomate suculento,
-           mussarela derretida, manjericão fresco e um toque de azeite.
-            Sabor e simplicidade!`,
-     },
-     {
-          id: 4,
-          imagem: pizza,
-          titulo: 'Pizza Marguerita',
-          descricao: `A clássica Marguerita: molho de tomate suculento,
-           mussarela derretida, manjericão fresco e um toque de azeite.
-            Sabor e simplicidade!`,
-     },
-     {
-          id: 5,
-          imagem: pizza,
-          titulo: 'Pizza Marguerita',
-          descricao: `A clássica Marguerita: molho de tomate suculento,
-           mussarela derretida, manjericão fresco e um toque de azeite.
-            Sabor e simplicidade!`,
-     },
-     {
-          id: 6,
-          imagem: pizza,
-          titulo: 'Pizza Marguerita',
-          descricao: `A clássica Marguerita: molho de tomate suculento,
-           mussarela derretida, manjericão fresco e um toque de azeite.
-            Sabor e simplicidade!`,
-     },
-];
+import { useParams } from 'react-router-dom';
+import { Cardapio, Pratos } from '../Home';
 
 const Perfil = () => {
+     const [pratosPerfil, setPratosPerfil] = useState<Cardapio[]>([]);
+     const [pratos, setPratos] = useState<Pratos | null>(null);
+     const { id } = useParams();
+
+     useEffect(() => {
+          fetch(`https://ebac-fake-api.vercel.app/api/efood/restaurantes/${id}`)
+               .then(res => res.json())
+               .then((res: Pratos) => {
+                    setPratosPerfil(res.cardapio);
+                    setPratos(res);
+               });
+     }, [id]);
+
+     if (!pratos) {
+          return <h1>Carregando...</h1>;
+     }
+
      return (
           <>
-               <HeaderPerfil />
+               {pratos && (
+                    <HeaderPerfil capa={pratos.capa} nome={pratos.titulo} tipo={pratos.tipo} />
+               )}
                <Principal>
                     <Cards tipoCards="perfil">
-                         {PratosPerfil.map(prato => (
+                         {pratosPerfil.map(prato => (
                               <CardPerfil
                                    key={prato.id}
-                                   imagem={prato.imagem}
-                                   titulo={prato.titulo}
+                                   imagem={prato.foto}
+                                   titulo={prato.nome}
                                    descricao={prato.descricao}
                               />
                          ))}
