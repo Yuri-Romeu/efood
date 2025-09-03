@@ -11,6 +11,10 @@ import Modal from '../../Components/Modal';
 const Perfil = () => {
      const [pratosPerfil, setPratosPerfil] = useState<Cardapio[]>([]);
      const [pratos, setPratos] = useState<Pratos | null>(null);
+
+     const [modalAberto, setModalAberto] = useState(false);
+     const [pratoSelecionado, setPratoSelecionado] = useState<Cardapio | null>(null);
+
      const { id } = useParams();
 
      useEffect(() => {
@@ -39,10 +43,16 @@ const Perfil = () => {
                                    imagem={prato.foto}
                                    titulo={prato.nome}
                                    descricao={prato.descricao}
+                                   onMaisDetalhes={() => {
+                                        setPratoSelecionado(prato);
+                                        setModalAberto(true);
+                                   }}
                               />
                          ))}
                     </Cards>
-                    <Modal />
+                    {modalAberto && pratoSelecionado && (
+                         <Modal prato={pratoSelecionado} onFechar={() => setModalAberto(false)} />
+                    )}
                </Principal>
           </>
      );

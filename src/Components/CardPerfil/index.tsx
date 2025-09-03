@@ -4,9 +4,10 @@ type Props = {
      imagem: string;
      titulo: string;
      descricao: string;
+     onMaisDetalhes?: () => void;
 };
 
-const CardPerfil = ({ imagem, titulo, descricao }: Props) => {
+const CardPerfil = ({ imagem, titulo, descricao, onMaisDetalhes }: Props) => {
      return (
           <Container>
                <img src={imagem} alt="" />
@@ -15,7 +16,7 @@ const CardPerfil = ({ imagem, titulo, descricao }: Props) => {
 
                <Descricao>{descricao}</Descricao>
 
-               <Botao>Adicionar ao carrinho</Botao>
+               <Botao onClick={onMaisDetalhes}>Mais detalhes</Botao>
           </Container>
      );
 };
