@@ -16,9 +16,10 @@ type Props = {
 
 const Modal = ({ prato, onFechar }: Props) => {
      const formatarPreco = (preco: number) => {
-          if (preco) {
-               return preco.toFixed(2).replace(',', '.');
+          if (preco !== undefined && preco !== null) {
+               return preco.toFixed(2).replace('.', ',');
           }
+          return '0,00';
      };
 
      return (
