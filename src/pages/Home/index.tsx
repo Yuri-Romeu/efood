@@ -2,6 +2,7 @@ import Card from '../../Components/Card';
 import { Cards, Principal } from '../../styles';
 import Hero from '../../containers/Hero';
 import { useEffect, useState } from 'react';
+import { useGetRestaurantsQuery } from '../../services/api';
 
 export type Pratos = {
      id: number;
@@ -24,35 +25,33 @@ export type Cardapio = {
 };
 
 const Home = () => {
-     const [cardapio, setCardapio] = useState<Pratos[]>([]);
+     const { data: cardapio } = useGetRestaurantsQuery();
 
-     useEffect(() => {
-          fetch('https://ebac-fake-api.vercel.app/api/efood/restaurantes')
-               .then(res => res.json())
-               .then(res => setCardapio(res));
-     }, []);
-
-     return (
-          <>
-               <Hero />
-               <Principal>
-                    <Cards tipoCards="principal">
-                         {cardapio.map(prato => (
-                              <Card
-                                   key={prato.id}
-                                   id={prato.id}
-                                   imagem={prato.capa}
-                                   destacado={prato.destacado}
-                                   botoesImagem={prato.tipo}
-                                   titulo={prato.titulo}
-                                   nota={prato.avaliacao}
-                                   descricao={prato.descricao}
-                              />
-                         ))}
-                    </Cards>
-               </Principal>
-          </>
-     );
+     if (cardapio) {
+          return (
+               <>
+                    <Hero />
+                    <Principal>
+                         <Cards tipoCards="principal">
+                              {cardapio.map(prato => (
+                                   <Card
+                                        key={prato.id}
+                                        id={prato.id}
+                                        imagem={prato.capa}
+                                        destacado={prato.destacado}
+                                        botoesImagem={prato.tipo}
+                                        titulo={prato.titulo}
+                                        nota={prato.avaliacao}
+                                        descricao={prato.descricao}
+                                   />
+                              ))}
+                         </Cards>
+                    </Principal>
+               </>
+          );
+     } else {
+          return <h1>Carregando...</h1>;
+     }
 };
 
 export default Home;
