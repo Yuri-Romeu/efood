@@ -1,7 +1,14 @@
 import pizza from '../../assets/images/pizza.png';
 import fechar from '../../assets/images/close 1.png';
-import { Container, Descricao, Modal as ModalStyled, Titulo, Botao, ImgFechar } from './styles';
-import { useState } from 'react';
+import {
+     Container,
+     Descricao,
+     Modal as ModalStyled,
+     Titulo,
+     Botao,
+     ImgFechar,
+     Overlay,
+} from './styles';
 
 type Props = {
      prato: {
@@ -24,6 +31,7 @@ const Modal = ({ prato, onFechar }: Props) => {
 
      return (
           <Container>
+               <Overlay onClick={onFechar} />
                <ModalStyled>
                     <div>
                          <img src={prato.foto} alt="" />

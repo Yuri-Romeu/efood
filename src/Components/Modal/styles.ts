@@ -7,7 +7,6 @@ export const Container = styled.div`
      left: 0;
      width: 100%;
      height: 100%;
-     background-color: rgba(0, 0, 0, 0.7);
      display: flex;
      justify-content: center;
      align-items: center;
@@ -15,6 +14,16 @@ export const Container = styled.div`
      &.isVisible {
           display: none;
      }
+`;
+
+export const Overlay = styled.div`
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background-color: rgba(0, 0, 0, 0.7);
+     z-index: 0;
 `;
 
 export const Modal = styled.div`
@@ -26,6 +35,7 @@ export const Modal = styled.div`
      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
      display: flex;
      gap: 20px;
+     z-index: 1;
 
      span {
           display: block;
