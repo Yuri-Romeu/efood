@@ -20,6 +20,10 @@ export const Cabecalho = styled.div`
      align-items: center;
      justify-content: space-around;
      background-image: url(${fundo});
+
+     h4.carrinho {
+          cursor: pointer;
+     }
 `;
 
 export const ContainerImage = styled.div<Props>`

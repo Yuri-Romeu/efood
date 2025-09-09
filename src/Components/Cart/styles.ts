@@ -54,6 +54,7 @@ export const Prato = styled.div`
      }
 
      img {
+          object-fit: cover;
           width: 80px;
           height: 80px;
      }
