@@ -9,19 +9,25 @@ import {
      ImgFechar,
      Overlay,
 } from './styles';
+import { useDispatch } from 'react-redux';
+
+import { add, open } from '../../store/reducers/cart';
+import { Cardapio } from '../../pages/Home';
 
 type Props = {
-     prato: {
-          foto: string;
-          nome: string;
-          descricao: string;
-          preco?: number;
-          porcao?: string;
-     };
+     prato: Cardapio;
      onFechar: () => void;
 };
 
 const Modal = ({ prato, onFechar }: Props) => {
+     const dispatch = useDispatch();
+
+     const addPrato = () => {
+          dispatch(add(prato));
+          onFechar();
+          dispatch(open());
+     };
+
      const formatarPreco = (preco: number) => {
           if (preco !== undefined && preco !== null) {
                return preco.toFixed(2).replace('.', ',');
@@ -44,7 +50,9 @@ const Modal = ({ prato, onFechar }: Props) => {
 
                          <span>Serve de: {prato.porcao}</span>
 
-                         <Botao>Adicionar ao carrinho - R$ {formatarPreco(prato.preco || 0)}</Botao>
+                         <Botao onClick={addPrato}>
+                              Adicionar ao carrinho - R$ {formatarPreco(prato.preco || 0)}
+                         </Botao>
                     </div>
 
                     <ImgFechar src={fechar} alt="Fechar" onClick={onFechar} />

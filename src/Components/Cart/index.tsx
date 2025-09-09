@@ -1,10 +1,20 @@
 import { Button, Container, Lixeira, NomePrato, Overlay, Prato, Sidebar, Valor } from './styles';
 import pizza from '../../assets/images/pizza.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { close } from '../../store/reducers/cart';
+import { RootReducer } from '../../store';
 
 const Cart = () => {
+     const { isOpen, items } = useSelector((state: RootReducer) => state.cart);
+     const dispatch = useDispatch();
+
+     const fecharCart = () => {
+          dispatch(close());
+     };
+
      return (
-          <Container>
-               <Overlay />
+          <Container className={isOpen ? 'is-open' : ''}>
+               <Overlay onClick={fecharCart} />
 
                <Sidebar>
                     <Prato>
