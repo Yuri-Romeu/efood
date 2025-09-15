@@ -14,7 +14,7 @@ export const Container = styled.div`
      }
 `;
 
-export const BotoesSobreImagem = styled.div`
+export const Imagebuttons = styled.div`
      position: absolute;
      top: 14px;
      right: 10px;
@@ -22,13 +22,13 @@ export const BotoesSobreImagem = styled.div`
      gap: 8px;
 `;
 
-export const Titulo = styled.h1`
+export const Title = styled.h1`
      font-family: 'Roboto';
      font-weight: 700;
      font-size: 18px;
 `;
 
-export const Classificacao = styled.div`
+export const Classification = styled.div`
      display: flex;
      align-items: center;
      gap: 10px;
@@ -39,26 +39,26 @@ export const Classificacao = styled.div`
      }
 `;
 
-export const Nota = styled.p`
+export const Rating = styled.p`
      font-family: 'Roboto';
      font-weight: 700;
      font-size: 18px;
 `;
 
-export const AreaTexto = styled.div`
+export const TextArea = styled.div`
      padding: 10px;
      border: 1px solid ${Colors.salmon};
      border-top: none;
 `;
 
-export const Cabecalho = styled.div`
+export const Header = styled.div`
      display: flex;
      justify-content: space-between;
      align-items: center;
      margin-bottom: 10px;
 `;
 
-export const Texto = styled.p`
+export const Text = styled.p`
      font-family: 'Roboto';
      font-weight: 400;
      font-size: 14px;

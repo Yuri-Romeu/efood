@@ -31,7 +31,7 @@ const Perfil = () => {
      return (
           <>
                {pratos && (
-                    <HeaderPerfil capa={pratos.capa} nome={pratos.titulo} tipo={pratos.tipo} />
+                    <HeaderPerfil cover={pratos.capa} name={pratos.titulo} type={pratos.tipo} />
                )}
                <Principal>
                     <Cards tipoCards="perfil">
@@ -49,7 +49,7 @@ const Perfil = () => {
                          ))}
                     </Cards>
                     {modalAberto && pratoSelecionado && (
-                         <Modal prato={pratoSelecionado} onFechar={() => setModalAberto(false)} />
+                         <Modal dish={pratoSelecionado} onClose={() => setModalAberto(false)} />
                     )}
                </Principal>
           </>

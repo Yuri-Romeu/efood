@@ -50,7 +50,7 @@ export const Modal = styled.div`
      }
 `;
 
-export const Titulo = styled.h1`
+export const Title = styled.h1`
      font-family: 'Roboto';
      font-weight: 900;
      font-size: 18px;
@@ -58,7 +58,7 @@ export const Titulo = styled.h1`
      margin-bottom: 16px;
 `;
 
-export const Descricao = styled.p`
+export const Description = styled.p`
      font-family: 'Roboto';
      font-weight: 400;
      font-size: 14px;
@@ -68,7 +68,7 @@ export const Descricao = styled.p`
      word-spacing: 2px;
 `;
 
-export const Botao = styled.button`
+export const Button = styled.button`
      background-color: ${Colors.semiWhite};
      border: none;
      font-size: 14px;
@@ -78,7 +78,7 @@ export const Botao = styled.button`
      cursor: pointer;
 `;
 
-export const ImgFechar = styled.img`
+export const ImageClose = styled.img`
      width: 16px;
      height: 16px;
      position: absolute;

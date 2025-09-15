@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Colors } from '../../styles';
-import lixeira from '../../assets/images/Lixeira.png';
+import trash from '../../assets/images/Lixeira.png';
 
 export const Container = styled.div`
      position: fixed;
@@ -35,7 +35,7 @@ export const Sidebar = styled.aside`
      width: 100%;
 `;
 
-export const Prato = styled.div`
+export const Dish = styled.div`
      margin: 16px 0;
      display: flex;
      background-color: ${Colors.beige};
@@ -60,7 +60,7 @@ export const Prato = styled.div`
      }
 `;
 
-export const NomePrato = styled.h1`
+export const DishName = styled.h1`
      font-family: 'Roboto';
      font-weight: 900;
      font-size: 18px;
@@ -68,19 +68,19 @@ export const NomePrato = styled.h1`
      margin-bottom: 16px;
 `;
 
-export const Lixeira = styled.div`
+export const Trash = styled.div`
      bottom: 8px;
      right: 8px;
      position: absolute;
      cursor: pointer;
-     background-image: url(${lixeira});
+     background-image: url(${trash});
      width: 16px;
      height: 16px;
      background-size: cover;
      z-index: 1;
 `;
 
-export const Valor = styled.div`
+export const Cost = styled.div`
      display: flex;
      justify-content: space-between;
      font-weight: 700;

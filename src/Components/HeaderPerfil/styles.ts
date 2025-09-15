@@ -1,36 +1,36 @@
 import styled from 'styled-components';
-import fundo from '../../assets/images/fundo.png';
+import background from '../../assets/images/fundo.png';
 import { Colors } from '../../styles';
 
 type Props = {
-     fundo: string;
+     background: string;
 };
 
-type PropsTitulo = {
-     tipo: string;
+type PropsTitle = {
+     type: string;
 };
 
 export const Container = styled.header`
      width: 100%;
 `;
 
-export const Cabecalho = styled.div`
+export const Header = styled.div`
      height: 180px;
      display: flex;
      align-items: center;
      justify-content: space-around;
-     background-image: url(${fundo});
+     background-image: url(${background});
 
      h4.carrinho {
           cursor: pointer;
      }
 `;
 
-export const ContainerImage = styled.div<Props>`
+export const ImageContainer = styled.div<Props>`
      width: 100%;
      height: 280px;
      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-          url(${props => props.fundo});
+          url(${props => props.background});
      background-size: cover;
      background-position: center;
      display: flex;
@@ -38,10 +38,10 @@ export const ContainerImage = styled.div<Props>`
      justify-content: space-between;
 `;
 
-export const Titulo = styled.h1<PropsTitulo>`
+export const Title = styled.h1<PropsTitle>`
      font-family: 'Roboto';
-     font-weight: ${props => (props.tipo === 'categoria' ? 100 : 900)};
+     font-weight: ${props => (props.type === 'categoria' ? 100 : 900)};
      font-size: 32px;
      color: ${Colors.white};
-     padding: ${props => (props.tipo === 'categoria' ? '25px 170px' : '32px 170px')};
+     padding: ${props => (props.type === 'categoria' ? '25px 170px' : '32px 170px')};
 `;

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import fundo from '../../assets/images/fundo.png';
+import background from '../../assets/images/fundo.png';
 
 export const Container = styled.header`
-     background-image: url(${fundo});
+     background-image: url(${background});
      width: 100%;
      height: 384px;
      background-position: center;
@@ -17,7 +17,7 @@ export const Logo = styled.h1`
      text-align: center;
 `;
 
-export const Titulo = styled.h1`
+export const Title = styled.h1`
      font-family: 'Roboto';
      font-weight: 900;
      font-size: 36px;

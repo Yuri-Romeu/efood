@@ -1,4 +1,4 @@
-import { Cabecalho, Container, ContainerImage, Titulo } from './styles';
+import * as S from './styles';
 import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,12 +6,12 @@ import { open } from '../../store/reducers/cart';
 import { RootReducer } from '../../store';
 
 type Props = {
-     tipo: string;
-     capa: string;
-     nome: string;
+     type: string;
+     cover: string;
+     name: string;
 };
 
-const HeaderPerfil = ({ tipo, capa, nome }: Props) => {
+const HeaderPerfil = ({ type, cover, name }: Props) => {
      const dispatch = useDispatch();
      const { items } = useSelector((state: RootReducer) => state.cart);
 
@@ -20,8 +20,8 @@ const HeaderPerfil = ({ tipo, capa, nome }: Props) => {
      };
 
      return (
-          <Container>
-               <Cabecalho>
+          <S.Container>
+               <S.Header>
                     <h4>Restaurantes</h4>
                     <Link to="/">
                          <img src={logo} alt="" />
@@ -29,14 +29,14 @@ const HeaderPerfil = ({ tipo, capa, nome }: Props) => {
                     <h4 className="carrinho" onClick={abrirCart}>
                          {items.length} produto(s) no carrinho
                     </h4>
-               </Cabecalho>
+               </S.Header>
 
-               <ContainerImage fundo={capa}>
-                    <Titulo tipo="categoria">{tipo}</Titulo>
+               <S.ImageContainer background={cover}>
+                    <S.Title type="categoria">{type}</S.Title>
 
-                    <Titulo tipo="titulo">{nome}</Titulo>
-               </ContainerImage>
-          </Container>
+                    <S.Title type="titulo">{name}</S.Title>
+               </S.ImageContainer>
+          </S.Container>
      );
 };
 

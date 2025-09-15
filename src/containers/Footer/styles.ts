@@ -14,12 +14,12 @@ export const Logo = styled.img`
      margin: 40px 0;
 `;
 
-export const RedesSociais = styled.div`
+export const SocialMedia = styled.div`
      display: flex;
      gap: 10px;
 `;
 
-export const Texto = styled.p`
+export const Text = styled.p`
      font-weight: 400;
      font-size: 10px;
      width: 480px;

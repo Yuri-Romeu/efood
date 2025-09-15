@@ -1,4 +1,4 @@
-import { Botao, Container, Descricao, Titulo } from './styles';
+import * as S from './styles';
 
 type Props = {
      imagem: string;
@@ -16,15 +16,15 @@ const CardPerfil = ({ imagem, titulo, descricao, onMaisDetalhes }: Props) => {
      };
 
      return (
-          <Container>
+          <S.Container>
                <img src={imagem} alt="" />
 
-               <Titulo>{titulo}</Titulo>
+               <S.Title>{titulo}</S.Title>
 
-               <Descricao>{getDescricao(descricao)}</Descricao>
+               <S.Description>{getDescricao(descricao)}</S.Description>
 
-               <Botao onClick={onMaisDetalhes}>Mais detalhes</Botao>
-          </Container>
+               <S.Button onClick={onMaisDetalhes}>Mais detalhes</S.Button>
+          </S.Container>
      );
 };
 

@@ -1,13 +1,4 @@
-import {
-     AreaTexto,
-     BotoesSobreImagem,
-     Cabecalho,
-     Classificacao,
-     Container,
-     Nota,
-     Texto,
-     Titulo,
-} from './styles';
+import * as S from './styles';
 import estrela from '../../assets/images/star.png';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
@@ -31,28 +22,28 @@ const Card = ({ imagem, botoesImagem, titulo, nota, descricao, destacado, id }: 
      };
 
      return (
-          <Container>
+          <S.Container>
                <img src={imagem} alt="" />
-               <BotoesSobreImagem>
+               <S.Imagebuttons>
                     {destacado && <Button>Destaque da semana</Button>}
                     <Button>{botoesImagem}</Button>
-               </BotoesSobreImagem>
-               <AreaTexto>
-                    <Cabecalho>
-                         <Titulo>{titulo}</Titulo>
-                         <Classificacao>
-                              <Nota>{nota}</Nota>
+               </S.Imagebuttons>
+               <S.TextArea>
+                    <S.Header>
+                         <S.Title>{titulo}</S.Title>
+                         <S.Classification>
+                              <S.Rating>{nota}</S.Rating>
                               <img src={estrela} alt="Estrela" />
-                         </Classificacao>
-                    </Cabecalho>
+                         </S.Classification>
+                    </S.Header>
 
-                    <Texto>{getDescricao(descricao)}</Texto>
+                    <S.Text>{getDescricao(descricao)}</S.Text>
 
                     <Link to={`/product/${id}`}>
                          <Button clicked>Saiba Mais</Button>
                     </Link>
-               </AreaTexto>
-          </Container>
+               </S.TextArea>
+          </S.Container>
      );
 };
 

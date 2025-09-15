@@ -1,4 +1,4 @@
-import { Botao } from './styles';
+import { Button as ButtonStyled } from './styles';
 
 type Props = {
      children: string;
@@ -6,7 +6,7 @@ type Props = {
 };
 
 const Button = ({ children, clicked }: Props) => {
-     return <Botao clicked={clicked}>{children}</Botao>;
+     return <ButtonStyled clicked={clicked}>{children}</ButtonStyled>;
 };
 
 export default Button;

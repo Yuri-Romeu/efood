@@ -1,61 +1,53 @@
 import fechar from '../../assets/images/close 1.png';
-import {
-     Container,
-     Descricao,
-     Modal as ModalStyled,
-     Titulo,
-     Botao,
-     ImgFechar,
-     Overlay,
-} from './styles';
+import * as S from './styles';
 import { useDispatch } from 'react-redux';
 
 import { add, open } from '../../store/reducers/cart';
 
 type Props = {
-     prato: Cardapio;
-     onFechar: () => void;
+     dish: Cardapio;
+     onClose: () => void;
 };
 
-const Modal = ({ prato, onFechar }: Props) => {
+const Modal = ({ dish, onClose }: Props) => {
      const dispatch = useDispatch();
 
-     const addPrato = () => {
-          dispatch(add(prato));
-          onFechar();
+     const addDish = () => {
+          dispatch(add(dish));
+          onClose();
           dispatch(open());
      };
 
-     const formatarPreco = (preco: number) => {
-          if (preco !== undefined && preco !== null) {
-               return preco.toFixed(2).replace('.', ',');
+     const formatPrice = (price: number) => {
+          if (price !== undefined && price !== null) {
+               return price.toFixed(2).replace('.', ',');
           }
           return '0,00';
      };
 
      return (
-          <Container>
-               <Overlay onClick={onFechar} />
-               <ModalStyled>
+          <S.Container>
+               <S.Overlay onClick={onClose} />
+               <S.Modal>
                     <div>
-                         <img src={prato.foto} alt="" />
+                         <img src={dish.foto} alt="" />
                     </div>
 
                     <div>
-                         <Titulo>{prato.nome}</Titulo>
+                         <S.Title>{dish.nome}</S.Title>
 
-                         <Descricao>{prato.descricao}</Descricao>
+                         <S.Description>{dish.descricao}</S.Description>
 
-                         <span>Serve de: {prato.porcao}</span>
+                         <span>Serve de: {dish.porcao}</span>
 
-                         <Botao onClick={addPrato}>
-                              Adicionar ao carrinho - R$ {formatarPreco(prato.preco || 0)}
-                         </Botao>
+                         <S.Button onClick={addDish}>
+                              Adicionar ao carrinho - R$ {formatPrice(dish.preco || 0)}
+                         </S.Button>
                     </div>
 
-                    <ImgFechar src={fechar} alt="Fechar" onClick={onFechar} />
-               </ModalStyled>
-          </Container>
+                    <S.ImageClose src={fechar} alt="Fechar" onClick={onClose} />
+               </S.Modal>
+          </S.Container>
      );
 };
 

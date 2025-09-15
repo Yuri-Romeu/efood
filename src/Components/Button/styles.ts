@@ -5,7 +5,7 @@ type Props = {
      clicked?: boolean;
 };
 
-export const Botao = styled.button<Props>`
+export const Button = styled.button<Props>`
      background-color: ${Colors.salmon};
      border: none;
      font-size: 14px;

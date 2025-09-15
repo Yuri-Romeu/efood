@@ -1,4 +1,4 @@
-import { Button, Container, Lixeira, NomePrato, Overlay, Prato, Sidebar, Valor } from './styles';
+import * as S from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { close, remove } from '../../store/reducers/cart';
 import { RootReducer } from '../../store';
@@ -25,29 +25,29 @@ const Cart = () => {
      const totalCart = items.reduce((total, item) => total + item.preco, 0);
 
      return (
-          <Container className={isOpen ? 'is-open' : ''}>
-               <Overlay onClick={fecharCart} />
+          <S.Container className={isOpen ? 'is-open' : ''}>
+               <S.Overlay onClick={fecharCart} />
 
-               <Sidebar>
+               <S.Sidebar>
                     {items.map(item => (
-                         <Prato>
+                         <S.Dish>
                               <img src={item.foto} alt="Prato" />
                               <div>
-                                   <NomePrato>{item.nome}</NomePrato>
+                                   <S.DishName>{item.nome}</S.DishName>
                                    <p>{formatarPreco(item.preco)}</p>
                               </div>
-                              <Lixeira onClick={() => removerPrato(item.id)} />
-                         </Prato>
+                              <S.Trash onClick={() => removerPrato(item.id)} />
+                         </S.Dish>
                     ))}
 
-                    <Valor>
+                    <S.Cost>
                          <p>Valor total:</p>
                          <span>{formatarPreco(totalCart)}</span>
-                    </Valor>
+                    </S.Cost>
 
-                    <Button>Continuar com a entrega</Button>
-               </Sidebar>
-          </Container>
+                    <S.Button>Continuar com a entrega</S.Button>
+               </S.Sidebar>
+          </S.Container>
      );
 };
 
