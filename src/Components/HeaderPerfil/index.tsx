@@ -2,7 +2,7 @@ import * as S from './styles';
 import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { open } from '../../store/reducers/cart';
+import { openCart } from '../../store/reducers/cart';
 import { RootReducer } from '../../store';
 
 type Props = {
@@ -16,7 +16,7 @@ const HeaderPerfil = ({ type, cover, name }: Props) => {
      const { items } = useSelector((state: RootReducer) => state.cart);
 
      const abrirCart = () => {
-          dispatch(open());
+          dispatch(openCart());
      };
 
      return (

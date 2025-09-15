@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type CartState = {
      items: Cardapio[];
-     isOpen: boolean;
+     isOpenCart: boolean;
 };
 
 const initialState: CartState = {
      items: [],
-     isOpen: false,
+     isOpenCart: false,
 };
 
 const cartSlice = createSlice({
@@ -21,15 +21,15 @@ const cartSlice = createSlice({
                state.items = state.items.filter(item => item.id !== action.payload);
           },
 
-          open: state => {
-               state.isOpen = true;
+          openCart: state => {
+               state.isOpenCart = true;
           },
 
-          close: state => {
-               state.isOpen = false;
+          closeCart: state => {
+               state.isOpenCart = false;
           },
      },
 });
 
-export const { add, remove, open, close } = cartSlice.actions;
+export const { add, remove, openCart, closeCart } = cartSlice.actions;
 export default cartSlice.reducer;

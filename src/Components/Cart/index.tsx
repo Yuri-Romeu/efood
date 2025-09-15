@@ -1,14 +1,14 @@
 import * as S from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { close, remove } from '../../store/reducers/cart';
+import { closeCart, remove } from '../../store/reducers/cart';
 import { RootReducer } from '../../store';
 
 const Cart = () => {
-     const { isOpen, items } = useSelector((state: RootReducer) => state.cart);
+     const { isOpenCart, items } = useSelector((state: RootReducer) => state.cart);
      const dispatch = useDispatch();
 
      const fecharCart = () => {
-          dispatch(close());
+          dispatch(closeCart());
      };
 
      const removerPrato = (id: number) => {
@@ -24,8 +24,16 @@ const Cart = () => {
 
      const totalCart = items.reduce((total, item) => total + item.preco, 0);
 
+     const payment = () => {
+          if (items.length > 0) {
+               dispatch(closeCart());
+          } else {
+               alert('Seu carrinho está vazio');
+          }
+     };
+
      return (
-          <S.Container className={isOpen ? 'is-open' : ''}>
+          <S.Container className={isOpenCart ? 'is-open' : ''}>
                <S.Overlay onClick={fecharCart} />
 
                <S.Sidebar>

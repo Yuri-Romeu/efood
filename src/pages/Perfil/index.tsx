@@ -5,6 +5,7 @@ import CardPerfil from '../../Components/CardPerfil';
 import HeaderPerfil from '../../Components/HeaderPerfil';
 import { Cards, Principal } from '../../styles';
 import Modal from '../../Components/Modal';
+import Payment from '../../Components/Payment';
 
 const Perfil = () => {
      const [pratosPerfil, setPratosPerfil] = useState<Cardapio[]>([]);
@@ -52,6 +53,8 @@ const Perfil = () => {
                          <Modal dish={pratoSelecionado} onClose={() => setModalAberto(false)} />
                     )}
                </Principal>
+
+               <Payment />
           </>
      );
 };

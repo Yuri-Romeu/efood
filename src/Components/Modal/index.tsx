@@ -2,7 +2,7 @@ import fechar from '../../assets/images/close 1.png';
 import * as S from './styles';
 import { useDispatch } from 'react-redux';
 
-import { add, open } from '../../store/reducers/cart';
+import { add, openCart } from '../../store/reducers/cart';
 
 type Props = {
      dish: Cardapio;
@@ -15,7 +15,7 @@ const Modal = ({ dish, onClose }: Props) => {
      const addDish = () => {
           dispatch(add(dish));
           onClose();
-          dispatch(open());
+          dispatch(openCart());
      };
 
      const formatPrice = (price: number) => {
