@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Cores } from '../../styles';
+import { Colors } from '../../styles';
 
 export const Footer = styled.footer`
-     background-color: ${Cores.bege};
+     background-color: ${Colors.beige};
      width: 100%;
      height: 290px;
      display: flex;

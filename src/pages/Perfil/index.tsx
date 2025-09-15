@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { Cardapio, Pratos } from '../Home';
-
 import CardPerfil from '../../Components/CardPerfil';
 import HeaderPerfil from '../../Components/HeaderPerfil';
 import { Cards, Principal } from '../../styles';

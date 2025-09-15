@@ -1,15 +1,14 @@
 import styled from 'styled-components';
+import { Colors } from '../../styles';
 
 export const Container = styled.div`
      width: 472px;
-     min-height: 398px;
      height: 100%;
      position: relative;
 
      img:first-child {
           display: block;
-          max-width: 472px;
-          max-height: 217px;
+          height: 217px;
           object-fit: cover;
           width: 100%;
      }
@@ -48,7 +47,7 @@ export const Nota = styled.p`
 
 export const AreaTexto = styled.div`
      padding: 10px;
-     border: 1px solid #e66767;
+     border: 1px solid ${Colors.salmon};
      border-top: none;
 `;
 
@@ -65,5 +64,5 @@ export const Texto = styled.p`
      font-size: 14px;
      line-height: 22px;
      text-align: justify;
-     margin-bottom: 10px;
+     margin: 16px 0;
 `;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Cores } from '../../styles';
+import { Colors } from '../../styles';
 
 export const Container = styled.div`
      position: fixed;
@@ -28,7 +28,7 @@ export const Overlay = styled.div`
 
 export const Modal = styled.div`
      position: relative;
-     background-color: ${Cores.salmao};
+     background-color: ${Colors.salmon};
      padding: 20px;
      width: 1024px;
      height: 344px;
@@ -39,7 +39,7 @@ export const Modal = styled.div`
 
      span {
           display: block;
-          color: ${Cores.branco};
+          color: ${Colors.white};
           margin-bottom: 16px;
      }
 
@@ -54,7 +54,7 @@ export const Titulo = styled.h1`
      font-family: 'Roboto';
      font-weight: 900;
      font-size: 18px;
-     color: ${Cores.branco};
+     color: ${Colors.white};
      margin-bottom: 16px;
 `;
 
@@ -63,17 +63,17 @@ export const Descricao = styled.p`
      font-weight: 400;
      font-size: 14px;
      line-height: 22px;
-     color: ${Cores.branco};
+     color: ${Colors.white};
      margin-bottom: 24px;
      word-spacing: 2px;
 `;
 
 export const Botao = styled.button`
-     background-color: ${Cores.semiBranco};
+     background-color: ${Colors.semiWhite};
      border: none;
      font-size: 14px;
      font-weight: 700;
-     color: ${Cores.salmao};
+     color: ${Colors.salmon};
      padding: 4px 10px;
      cursor: pointer;
 `;

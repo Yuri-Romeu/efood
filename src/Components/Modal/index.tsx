@@ -1,4 +1,3 @@
-import pizza from '../../assets/images/pizza.png';
 import fechar from '../../assets/images/close 1.png';
 import {
      Container,
@@ -12,7 +11,6 @@ import {
 import { useDispatch } from 'react-redux';
 
 import { add, open } from '../../store/reducers/cart';
-import { Cardapio } from '../../pages/Home';
 
 type Props = {
      prato: Cardapio;

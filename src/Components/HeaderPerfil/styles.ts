@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import fundo from '../../assets/images/fundo.png';
-import { Cores } from '../../styles';
+import { Colors } from '../../styles';
 
 type Props = {
      fundo: string;
@@ -42,6 +42,6 @@ export const Titulo = styled.h1<PropsTitulo>`
      font-family: 'Roboto';
      font-weight: ${props => (props.tipo === 'categoria' ? 100 : 900)};
      font-size: 32px;
-     color: ${Cores.branco};
+     color: ${Colors.white};
      padding: ${props => (props.tipo === 'categoria' ? '25px 170px' : '32px 170px')};
 `;

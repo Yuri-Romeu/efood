@@ -1,6 +1,5 @@
 import { Cabecalho, Container, ContainerImage, Titulo } from './styles';
 import logo from '../../assets/images/logo.png';
-import macarrao from '../../assets/images/macarrao.png';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { open } from '../../store/reducers/cart';

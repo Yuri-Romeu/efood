@@ -9,13 +9,13 @@ const Footer = () => {
           <Rodape>
                <Logo src={logo} alt="Logo efood" />
                <RedesSociais>
-                    <a href="#">
+                    <a href="/">
                          <img src={instagram} alt="" />
                     </a>
-                    <a href="#">
+                    <a href="/">
                          <img src={facebook} alt="" />
                     </a>
-                    <a href="#">
+                    <a href="/">
                          <img src={twitter} alt="" />
                     </a>
                </RedesSociais>

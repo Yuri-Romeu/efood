@@ -5,11 +5,11 @@ type Props = {
      tipoCards?: 'principal' | 'perfil';
 };
 
-export const Cores = {
-     salmao: '#E66767',
-     semiBranco: '#FFF8F2',
-     branco: '#FFFFFF',
-     bege: '#FFEBD9',
+export const Colors = {
+     salmon: '#E66767',
+     semiWhite: '#FFF8F2',
+     white: '#FFFFFF',
+     beige: '#FFEBD9',
 };
 
 export const GlobalCSS = createGlobalStyle`
@@ -22,8 +22,8 @@ export const GlobalCSS = createGlobalStyle`
 }
 
 body {
-    background-color: ${Cores.semiBranco};
-    color: ${Cores.salmao}
+    background-color: ${Colors.semiWhite};
+    color: ${Colors.salmon}
 }
 
 `;

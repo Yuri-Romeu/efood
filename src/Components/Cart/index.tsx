@@ -1,5 +1,4 @@
 import { Button, Container, Lixeira, NomePrato, Overlay, Prato, Sidebar, Valor } from './styles';
-import pizza from '../../assets/images/pizza.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { close, remove } from '../../store/reducers/cart';
 import { RootReducer } from '../../store';

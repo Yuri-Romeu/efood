@@ -24,8 +24,8 @@ type Props = {
 
 const Card = ({ imagem, botoesImagem, titulo, nota, descricao, destacado, id }: Props) => {
      const getDescricao = (descricao: string) => {
-          if (descricao.length > 278) {
-               return descricao.substring(0, 275) + '...';
+          if (descricao.length > 234) {
+               return descricao.substring(0, 231) + '...';
           }
           return descricao;
      };
