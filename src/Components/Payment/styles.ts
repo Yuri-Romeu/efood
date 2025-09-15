@@ -14,6 +14,7 @@ export const Container = styled.div<ContainerProps>`
      display: ${props => (props.active ? 'flex' : 'none')};
      justify-content: flex-end;
      z-index: 1;
+     color: ${Colors.beige};
 `;
 
 export const Overlay = styled.div`
@@ -29,9 +30,19 @@ export const Overlay = styled.div`
 export const Sidebar = styled.aside`
      background-color: ${Colors.salmon};
      z-index: 1;
-     padding: 16px 8px 0 8px;
+     padding: 34px 8px 0 7px;
      max-width: 360px;
      width: 100%;
+
+     h3 {
+          font-weight: 700;
+          font-size: 16px;
+          margin-bottom: 16px;
+     }
+
+     .buttons {
+          margin-top: 20px;
+     }
 `;
 
 export const Button = styled.button`
@@ -43,4 +54,11 @@ export const Button = styled.button`
      width: 100%;
      padding: 4px 10px;
      cursor: pointer;
+     margin-top: 8px;
+`;
+
+export const GroupInputs = styled.div`
+     display: flex;
+     justify-content: space-between;
+     width: 100%;
 `;
