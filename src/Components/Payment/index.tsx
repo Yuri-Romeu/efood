@@ -1,9 +1,21 @@
 import * as S from './styles';
+import { closePayment as closePaymentReducer } from '../../store/reducers/payment';
+import { useDispatch } from 'react-redux';
 
-const Payment = () => {
+type Props = {
+     active: boolean;
+};
+
+const Payment = ({ active }: Props) => {
+     const dispatch = useDispatch();
+
+     const closePayment = () => {
+          dispatch(closePaymentReducer());
+     };
+
      return (
-          <S.Container>
-               <S.Overlay />
+          <S.Container active={active}>
+               <S.Overlay onClick={closePayment} />
 
                <S.Sidebar>entrega</S.Sidebar>
           </S.Container>

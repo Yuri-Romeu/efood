@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 import { Colors } from '../../styles';
 
-export const Container = styled.div`
+type ContainerProps = {
+     active: boolean;
+};
+
+export const Container = styled.div<ContainerProps>`
      position: fixed;
      top: 0;
      left: 0;
      width: 100%;
      height: 100%;
-     display: none;
+     display: ${props => (props.active ? 'flex' : 'none')};
      justify-content: flex-end;
      z-index: 1;
-
-     &.is-open {
-          display: flex;
-     }
 `;
 
 export const Overlay = styled.div`

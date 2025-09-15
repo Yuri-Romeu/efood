@@ -1,6 +1,7 @@
 import * as S from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeCart, remove } from '../../store/reducers/cart';
+import { openPayment } from '../../store/reducers/payment';
 import { RootReducer } from '../../store';
 
 const Cart = () => {
@@ -27,6 +28,7 @@ const Cart = () => {
      const payment = () => {
           if (items.length > 0) {
                dispatch(closeCart());
+               dispatch(openPayment());
           } else {
                alert('Seu carrinho está vazio');
           }
@@ -53,7 +55,7 @@ const Cart = () => {
                          <span>{formatarPreco(totalCart)}</span>
                     </S.Cost>
 
-                    <S.Button>Continuar com a entrega</S.Button>
+                    <S.Button onClick={payment}>Continuar com a entrega</S.Button>
                </S.Sidebar>
           </S.Container>
      );

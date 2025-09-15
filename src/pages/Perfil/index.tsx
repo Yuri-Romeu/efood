@@ -6,6 +6,8 @@ import HeaderPerfil from '../../Components/HeaderPerfil';
 import { Cards, Principal } from '../../styles';
 import Modal from '../../Components/Modal';
 import Payment from '../../Components/Payment';
+import { useSelector } from 'react-redux';
+import { RootReducer } from '../../store';
 
 const Perfil = () => {
      const [pratosPerfil, setPratosPerfil] = useState<Cardapio[]>([]);
@@ -13,6 +15,8 @@ const Perfil = () => {
 
      const [modalAberto, setModalAberto] = useState(false);
      const [pratoSelecionado, setPratoSelecionado] = useState<Cardapio | null>(null);
+
+     const { isOpenPayment } = useSelector((state: RootReducer) => state.payment);
 
      const { id } = useParams();
 
@@ -54,7 +58,7 @@ const Perfil = () => {
                     )}
                </Principal>
 
-               <Payment />
+               <Payment active={isOpenPayment} />
           </>
      );
 };
