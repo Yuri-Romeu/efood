@@ -31,6 +31,9 @@ const Inputs = ({
                {mask ? (
                     <S.MaskedInput
                          mask={mask}
+                         type={type}
+                         id={name}
+                         size={size}
                          value={value}
                          onAccept={(val: string) =>
                               onChange?.({
