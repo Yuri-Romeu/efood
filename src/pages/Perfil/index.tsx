@@ -8,6 +8,7 @@ import Modal from '../../Components/Modal';
 import Payment from '../../Components/Payment';
 import { useSelector } from 'react-redux';
 import { RootReducer } from '../../store';
+import Loader from '../../Components/Loader';
 
 const Perfil = () => {
      const [pratosPerfil, setPratosPerfil] = useState<Cardapio[]>([]);
@@ -30,7 +31,7 @@ const Perfil = () => {
      }, [id]);
 
      if (!pratos) {
-          return <h1>Carregando...</h1>;
+          return <Loader />;
      }
 
      return (

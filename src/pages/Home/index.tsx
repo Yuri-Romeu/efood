@@ -2,6 +2,7 @@ import Card from '../../Components/Card';
 import { Cards, Principal } from '../../styles';
 import Hero from '../../containers/Hero';
 import { useGetRestaurantsQuery } from '../../services/api';
+import Loader from '../../Components/Loader';
 
 const Home = () => {
      const { data: cardapio } = useGetRestaurantsQuery();
@@ -29,7 +30,7 @@ const Home = () => {
                </>
           );
      } else {
-          return <h1>Carregando...</h1>;
+          return <Loader />;
      }
 };
 
