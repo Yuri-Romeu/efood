@@ -3,12 +3,14 @@ import * as Yup from 'yup';
 import { openCart } from '../../store/reducers/cart';
 import { closePayment as closePaymentReducer } from '../../store/reducers/payment';
 import { useDispatch } from 'react-redux';
+import { clearCart } from '../../store/reducers/cart';
 import Inputs from '../Inputs';
 import { useFormik } from 'formik';
 import { usePurchaseMutation } from '../../services/api';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootReducer } from '../../store';
+import { formatPrice, getTotalPrice } from '../../utils';
 
 type Props = {
      active: boolean;
@@ -17,6 +19,8 @@ type Props = {
 const Payment = ({ active }: Props) => {
      const [purchase, { isLoading, isSuccess, data }] = usePurchaseMutation();
      const { items } = useSelector((state: RootReducer) => state.cart);
+
+     const [purchaseCompleted, setPurchaseCompleted] = useState(true);
 
      const [isDelivery, setIsDelivery] = useState(true);
 
@@ -48,25 +52,38 @@ const Payment = ({ active }: Props) => {
                numero: Yup.string().required('Campo obrigatório'),
                completo: Yup.string().required('Campo obrigatório'),
 
-               nomeCartão: Yup.string().required('Campo obrigatório'),
-               numeroCartao: Yup.string().required('Campo obrigatório'),
+               nomeCartao: Yup.string().when((values, schema) =>
+                    !isDelivery ? schema.required('Campo obrigatório') : schema,
+               ),
+               numeroCartao: Yup.string().when((values, schema) =>
+                    !isDelivery ? schema.required('Campo obrigatório') : schema,
+               ),
                cvvCartao: Yup.string()
+                    .when((values, schema) =>
+                         !isDelivery ? schema.required('Campo obrigatório') : schema,
+                    )
                     .min(3, 'CVV inválido')
-                    .max(3, 'CVV inválido')
-                    .required('Campo obrigatório'),
+                    .max(3, 'CVV inválido'),
                mesCartao: Yup.string()
+                    .when((values, schema) =>
+                         !isDelivery ? schema.required('Campo obrigatório') : schema,
+                    )
                     .max(2, 'Mês inválido')
-                    .min(2, 'Mês inválido')
-                    .required('Campo obrigatório'),
+                    .min(2, 'Mês inválido'),
                anoCartao: Yup.string()
+                    .when((values, schema) =>
+                         !isDelivery ? schema.required('Campo obrigatório') : schema,
+                    )
                     .max(2, 'Mês inválido')
-                    .min(2, 'Mês inválido')
-                    .required('Campo obrigatório'),
+                    .min(2, 'Mês inválido'),
           }),
 
           onSubmit: () => {
                purchase({
-                    products: [{ id: 1, price: 100 }],
+                    products: items.map(item => ({
+                         id: item.id,
+                         price: item.preco as number,
+                    })),
                     delivery: {
                          receiver: form.values.remetente,
                          address: {
@@ -79,12 +96,12 @@ const Payment = ({ active }: Props) => {
                     },
                     payment: {
                          card: {
-                              name: 'Teste',
-                              number: '1234123412341234',
-                              code: 123,
+                              name: form.values.nomeCartao,
+                              number: form.values.numeroCartao,
+                              code: Number(form.values.cvvCartao),
                               expires: {
-                                   month: 12,
-                                   year: 2030,
+                                   month: Number(form.values.mesCartao),
+                                   year: Number(form.values.anoCartao),
                               },
                          },
                     },
@@ -112,7 +129,7 @@ const Payment = ({ active }: Props) => {
      const continuePayment = async () => {
           await form.validateForm();
 
-          if (Object.keys(form.errors).length > 0) {
+          if (Object.keys(form.errors).length > 0 || Object.keys(form.touched).length === 0) {
                alert('Preencha todos os campos corretamente');
           } else {
                setIsDelivery(false);
@@ -126,6 +143,13 @@ const Payment = ({ active }: Props) => {
                .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                .join(' ');
      };
+
+     useEffect(() => {
+          if (isSuccess) {
+               dispatch(clearCart());
+               setPurchaseCompleted(true);
+          }
+     }, [isSuccess, dispatch]);
 
      return (
           <S.Container active={active}>
@@ -168,7 +192,7 @@ const Payment = ({ active }: Props) => {
                                    <Inputs
                                         name="cep"
                                         label="CEP"
-                                        type="number"
+                                        type="text"
                                         size={150}
                                         value={form.values.cep}
                                         onChange={form.handleChange}
@@ -206,77 +230,136 @@ const Payment = ({ active }: Props) => {
                               </div>
                          </form>
                     ) : (
-                         <form>
-                              <h3>Pagamento - Valor a pagar R$ 190,00</h3>
+                         <>
+                              {purchaseCompleted && isSuccess && data ? (
+                                   <>
+                                        <h3>Pedido realizado - {data.orderId}</h3>
 
-                              <Inputs
-                                   name="nomeCartao"
-                                   label="Nome no cartão"
-                                   type="text"
-                                   value={capitalLetter(form.values.nomeCartao)}
-                                   onChange={form.handleChange}
-                                   onBlur={form.handleBlur}
-                                   class={checkInputHasError('nomeCartao') ? 'error' : ''}
-                              />
+                                        <S.Text>
+                                             Estamos felizes em informar que seu pedido já está em
+                                             processo de preparação e, em breve, será entregue no
+                                             endereço fornecido.
+                                        </S.Text>
 
-                              <S.GroupInputs>
-                                   <Inputs
-                                        name="numeroCartao"
-                                        label="Número do cartão"
-                                        type="number"
-                                        size={228}
-                                        value={form.values.numeroCartao}
-                                        onChange={form.handleChange}
-                                        onBlur={form.handleBlur}
-                                        class={checkInputHasError('numeroCartao') ? 'error' : ''}
-                                        mask="0000 0000 0000 0000"
-                                   />
+                                        <S.Text>
+                                             Gostaríamos de ressaltar que nossos entregadores não
+                                             estão autorizados a realizar cobranças extras.
+                                        </S.Text>
 
-                                   <Inputs
-                                        name="cvv"
-                                        label="CVV"
-                                        type="number"
-                                        size={87}
-                                        value={form.values.cvvCartao}
-                                        onChange={form.handleChange}
-                                        onBlur={form.handleBlur}
-                                        class={checkInputHasError('cvvCartao') ? 'error' : ''}
-                                        mask="000"
-                                   />
-                              </S.GroupInputs>
+                                        <S.Text>
+                                             Lembre-se da importância de higienizar as mãos após o
+                                             recebimento do pedido, garantindo assim sua segurança e
+                                             bem-estar durante a refeição.
+                                        </S.Text>
 
-                              <S.GroupInputs>
-                                   <Inputs
-                                        name="mesVencimento"
-                                        label="Mês de vencimento"
-                                        type="number"
-                                        size={155}
-                                        value={form.values.mesCartao}
-                                        onChange={form.handleChange}
-                                        onBlur={form.handleBlur}
-                                        class={checkInputHasError('mesCartao') ? 'error' : ''}
-                                        mask="00"
-                                   />
-                                   <Inputs
-                                        name="anoVencimento"
-                                        label="Ano de vencimento"
-                                        type="number"
-                                        size={155}
-                                        value={form.values.anoCartao}
-                                        onChange={form.handleChange}
-                                        onBlur={form.handleBlur}
-                                        class={checkInputHasError('anoCartao') ? 'error' : ''}
-                                        mask="00"
-                                   />
-                              </S.GroupInputs>
+                                        <S.Text>
+                                             Esperamos que desfrute de uma deliciosa e agradável
+                                             experiência gastronômica. Bom apetite!
+                                        </S.Text>
 
-                              <div className="buttons">
-                                   <S.Button>Finalizar pagamento</S.Button>
-                                   <S.Button onClick={() => setIsDelivery(true)}>
-                                        Voltar para a edição de endereço
-                                   </S.Button>
-                              </div>
-                         </form>
+                                        <S.ButtonLink to="/">Concluir</S.ButtonLink>
+                                   </>
+                              ) : (
+                                   <form onSubmit={form.handleSubmit}>
+                                        <h3>
+                                             Pagamento - Valor a pagar{' '}
+                                             {formatPrice(getTotalPrice(items))}
+                                        </h3>
+
+                                        <Inputs
+                                             name="nomeCartao"
+                                             label="Nome no cartão"
+                                             type="text"
+                                             value={capitalLetter(form.values.nomeCartao)}
+                                             onChange={form.handleChange}
+                                             onBlur={form.handleBlur}
+                                             class={checkInputHasError('nomeCartao') ? 'error' : ''}
+                                        />
+
+                                        <S.GroupInputs>
+                                             <Inputs
+                                                  name="numeroCartao"
+                                                  label="Número do cartão"
+                                                  type="text"
+                                                  size={228}
+                                                  value={form.values.numeroCartao}
+                                                  onChange={form.handleChange}
+                                                  onBlur={form.handleBlur}
+                                                  class={
+                                                       checkInputHasError('numeroCartao')
+                                                            ? 'error'
+                                                            : ''
+                                                  }
+                                                  mask="0000 0000 0000 0000"
+                                             />
+
+                                             <Inputs
+                                                  name="cvvCartao"
+                                                  label="CVV"
+                                                  type="number"
+                                                  size={87}
+                                                  value={form.values.cvvCartao}
+                                                  onChange={form.handleChange}
+                                                  onBlur={form.handleBlur}
+                                                  class={
+                                                       checkInputHasError('cvvCartao')
+                                                            ? 'error'
+                                                            : ''
+                                                  }
+                                                  mask="000"
+                                             />
+                                        </S.GroupInputs>
+
+                                        <S.GroupInputs>
+                                             <Inputs
+                                                  name="mesCartao"
+                                                  label="Mês de vencimento"
+                                                  type="number"
+                                                  size={155}
+                                                  value={form.values.mesCartao}
+                                                  onChange={form.handleChange}
+                                                  onBlur={form.handleBlur}
+                                                  class={
+                                                       checkInputHasError('mesCartao')
+                                                            ? 'error'
+                                                            : ''
+                                                  }
+                                                  mask="00"
+                                             />
+                                             <Inputs
+                                                  name="anoCartao"
+                                                  label="Ano de vencimento"
+                                                  type="number"
+                                                  size={155}
+                                                  value={form.values.anoCartao}
+                                                  onChange={form.handleChange}
+                                                  onBlur={form.handleBlur}
+                                                  class={
+                                                       checkInputHasError('anoCartao')
+                                                            ? 'error'
+                                                            : ''
+                                                  }
+                                                  mask="00"
+                                             />
+                                        </S.GroupInputs>
+
+                                        <div className="buttons">
+                                             <S.Button
+                                                  type="submit"
+                                                  disabled={isLoading}
+                                                  title="Clique aqui para finalizar a compra"
+                                             >
+                                                  {isLoading
+                                                       ? 'Finalizando compra...'
+                                                       : 'Finalizar pagamento'}
+                                             </S.Button>
+                                             <S.Button onClick={() => setIsDelivery(true)}>
+                                                  Voltar para a edição de endereço
+                                             </S.Button>
+                                        </div>
+                                   </form>
+                              )}
+                         </>
                     )}
                </S.Sidebar>
           </S.Container>

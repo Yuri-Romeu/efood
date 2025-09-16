@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Colors } from '../../styles';
+import { Link } from 'react-router-dom';
 
 type ContainerProps = {
      active: boolean;
@@ -61,4 +62,26 @@ export const GroupInputs = styled.div`
      display: flex;
      justify-content: space-between;
      width: 100%;
+`;
+
+export const Text = styled.p`
+     font-weight: 400;
+     font-size: 14px;
+     line-height: 22px;
+     margin-bottom: 22px;
+`;
+
+export const ButtonLink = styled(Link)`
+     background-color: ${Colors.beige};
+     display: block;
+     text-align: center;
+     border: none;
+     font-size: 14px;
+     font-weight: 700;
+     color: ${Colors.salmon};
+     width: 100%;
+     padding: 4px 10px;
+     cursor: pointer;
+     margin-top: 8px;
+     text-decoration: none;
 `;
