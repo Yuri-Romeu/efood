@@ -1,8 +1,9 @@
 import fechar from '../../assets/images/close 1.png';
 import * as S from './styles';
 import { useDispatch } from 'react-redux';
-
+import { AnimatePresence, motion } from 'framer-motion';
 import { add, openCart } from '../../store/reducers/cart';
+import { useState } from 'react';
 
 type Props = {
      dish: Cardapio;
@@ -11,10 +12,19 @@ type Props = {
 
 const Modal = ({ dish, onClose }: Props) => {
      const dispatch = useDispatch();
+     const [isVisible, setIsVisible] = useState(true);
+
+     const closeModal = () => {
+          setIsVisible(false);
+     };
+
+     const handleExited = () => {
+          onClose();
+     };
 
      const addDish = () => {
           dispatch(add(dish));
-          onClose();
+          closeModal();
           dispatch(openCart());
      };
 
@@ -26,28 +36,42 @@ const Modal = ({ dish, onClose }: Props) => {
      };
 
      return (
-          <S.Container>
-               <S.Overlay onClick={onClose} />
-               <S.Modal>
-                    <div>
-                         <img src={dish.foto} alt="" />
-                    </div>
+          <AnimatePresence onExitComplete={handleExited}>
+               {isVisible && (
+                    <S.Container>
+                         <motion.div
+                              className="overlay"
+                              onClick={closeModal}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 0.5 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.3 }}
+                         />
 
-                    <div>
-                         <S.Title>{dish.nome}</S.Title>
+                         <motion.div
+                              className="modal"
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.8 }}
+                              transition={{ duration: 0.3 }}
+                         >
+                              <img className="dish-image" src={dish.foto} alt={dish.nome} />
 
-                         <S.Description>{dish.descricao}</S.Description>
+                              <div className="content">
+                                   <S.Title>{dish.nome}</S.Title>
+                                   <S.Description>{dish.descricao}</S.Description>
+                                   <span>Serve de: {dish.porcao}</span>
 
-                         <span>Serve de: {dish.porcao}</span>
+                                   <S.Button onClick={addDish}>
+                                        Adicionar ao carrinho - R$ {formatPrice(dish.preco || 0)}
+                                   </S.Button>
+                              </div>
 
-                         <S.Button onClick={addDish}>
-                              Adicionar ao carrinho - R$ {formatPrice(dish.preco || 0)}
-                         </S.Button>
-                    </div>
-
-                    <S.ImageClose src={fechar} alt="Fechar" onClick={onClose} />
-               </S.Modal>
-          </S.Container>
+                              <S.ImageClose src={fechar} alt="Fechar" onClick={closeModal} />
+                         </motion.div>
+                    </S.Container>
+               )}
+          </AnimatePresence>
      );
 };
 

@@ -257,7 +257,9 @@ const Payment = ({ active }: Props) => {
                                              experiência gastronômica. Bom apetite!
                                         </S.Text>
 
-                                        <S.ButtonLink to="/">Concluir</S.ButtonLink>
+                                        <S.ButtonLink to="/" onClick={closePayment}>
+                                             Concluir
+                                        </S.ButtonLink>
                                    </>
                               ) : (
                                    <form onSubmit={form.handleSubmit}>

@@ -10,43 +10,48 @@ export const Container = styled.div`
      display: flex;
      justify-content: center;
      align-items: center;
+     z-index: 9999;
 
-     &.isVisible {
-          display: none;
-     }
-`;
-
-export const Overlay = styled.div`
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     background-color: rgba(0, 0, 0, 0.7);
-     z-index: 0;
-`;
-
-export const Modal = styled.div`
-     position: relative;
-     background-color: ${Colors.salmon};
-     padding: 20px;
-     width: 1024px;
-     height: 344px;
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-     display: flex;
-     gap: 20px;
-     z-index: 1;
-
-     span {
-          display: block;
-          color: ${Colors.white};
-          margin-bottom: 16px;
+     .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.7);
      }
 
-     img:first-child {
-          width: 280px;
-          height: 280px;
-          object-fit: cover;
+     .modal {
+          position: relative;
+          background-color: ${Colors.salmon};
+          padding: 20px;
+          width: 90%;
+          max-width: 1024px;
+          height: auto;
+          max-height: 80vh;
+          display: flex;
+          gap: 20px;
+          z-index: 1;
+          overflow-y: auto;
+          border-radius: 8px;
+
+          img.dish-image {
+               width: 280px;
+               height: 280px;
+               object-fit: cover;
+               flex-shrink: 0;
+          }
+
+          .content {
+               display: flex;
+               flex-direction: column;
+               justify-content: space-between;
+               flex: 1;
+
+               span {
+                    color: ${Colors.white};
+               }
+          }
      }
 `;
 
@@ -65,17 +70,17 @@ export const Description = styled.p`
      line-height: 22px;
      color: ${Colors.white};
      margin-bottom: 24px;
-     word-spacing: 2px;
 `;
 
 export const Button = styled.button`
-     background-color: ${Colors.semiWhite};
+     background-color: ${Colors.beige};
      border: none;
      font-size: 14px;
      font-weight: 700;
      color: ${Colors.salmon};
-     padding: 4px 10px;
+     padding: 8px 12px;
      cursor: pointer;
+     border-radius: 4px;
 `;
 
 export const ImageClose = styled.img`
