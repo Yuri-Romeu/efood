@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootReducer } from '../../store';
 import { formatPrice, getTotalPrice } from '../../utils';
+import { toast } from 'react-hot-toast';
 
 type Props = {
      active: boolean;
@@ -130,7 +131,7 @@ const Payment = ({ active }: Props) => {
           await form.validateForm();
 
           if (Object.keys(form.errors).length > 0 || Object.keys(form.touched).length === 0) {
-               alert('Preencha todos os campos corretamente');
+               toast.error('Preencha todos os campos corretamente!');
           } else {
                setIsDelivery(false);
           }

@@ -6,6 +6,7 @@ import { RootReducer } from '../../store';
 import { formatPrice } from '../../utils';
 import { getTotalPrice } from '../../utils';
 import { AnimatePresence, motion } from 'framer-motion';
+import { toast } from 'react-hot-toast';
 
 const Cart = () => {
      const { isOpenCart, items } = useSelector((state: RootReducer) => state.cart);
@@ -24,7 +25,7 @@ const Cart = () => {
                dispatch(closeCart());
                dispatch(openPayment());
           } else {
-               alert('Seu carrinho está vazio');
+               toast.error('Seu carrinho está vazio!');
           }
      };
 
