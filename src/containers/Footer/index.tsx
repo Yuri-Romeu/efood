@@ -3,11 +3,14 @@ import logo from '../../assets/images/logo.png';
 import instagram from '../../assets/images/instagram.png';
 import facebook from '../../assets/images/facebook (4).png';
 import twitter from '../../assets/images/twitter.png';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
      return (
           <S.Footer>
-               <S.Logo src={logo} alt="Logo efood" />
+               <Link to="/">
+                    <S.Logo src={logo} alt="Logo efood" />
+               </Link>
                <S.SocialMedia>
                     <a href="/">
                          <img src={instagram} alt="" />

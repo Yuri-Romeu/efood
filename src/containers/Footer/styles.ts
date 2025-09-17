@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Colors } from '../../styles';
+import { Breakpoints, Colors } from '../../styles';
 
 export const Footer = styled.footer`
      background-color: ${Colors.beige};
@@ -25,4 +25,9 @@ export const Text = styled.p`
      width: 480px;
      text-align: center;
      margin-top: 60px;
+
+     @media (max-width: ${Breakpoints.mobile}) {
+          width: 100%;
+          font-size: 12px;
+     }
 `;

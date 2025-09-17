@@ -12,6 +12,12 @@ export const Colors = {
      beige: '#FFEBD9',
 };
 
+export const Breakpoints = {
+     mobile: '480px',
+     tablet: '768px',
+     desktop: '1024px',
+};
+
 export const GlobalCSS = createGlobalStyle`
 * {
     margin: 0;
@@ -41,4 +47,9 @@ export const Cards = styled.div<Props>`
           props.tipoCards === 'principal' ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)'};
      gap: 60px;
      padding: 60px;
+
+     @media (max-width: ${Breakpoints.mobile}) {
+          grid-template-columns: repeat(1, 1fr);
+          padding: 30px;
+     }
 `;

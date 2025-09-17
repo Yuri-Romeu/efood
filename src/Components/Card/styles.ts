@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Colors } from '../../styles';
+import { Breakpoints, Colors } from '../../styles';
 
 export const Container = styled.div`
      width: 472px;
@@ -10,6 +10,10 @@ export const Container = styled.div`
           display: block;
           height: 217px;
           object-fit: cover;
+          width: 100%;
+     }
+
+     @media (max-width: ${Breakpoints.mobile}) {
           width: 100%;
      }
 `;
