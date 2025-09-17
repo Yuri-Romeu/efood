@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Colors } from '../../styles';
+import { Breakpoints, Colors } from '../../styles';
 import { Link } from 'react-router-dom';
 
 type ContainerProps = {
@@ -43,6 +43,10 @@ export const Sidebar = styled.aside`
 
      .buttons {
           margin-top: 20px;
+     }
+
+     @media (max-width: ${Breakpoints.mobile}) {
+          max-width: 300px;
      }
 `;
 

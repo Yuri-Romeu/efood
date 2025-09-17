@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Colors } from '../../styles';
+import { Breakpoints, Colors } from '../../styles';
 
 export const Container = styled.div`
      position: fixed;
@@ -48,9 +48,18 @@ export const Container = styled.div`
                justify-content: space-between;
                flex: 1;
 
+               @media (max-width: ${Breakpoints.mobile}) {
+                    align-items: center;
+               }
+
                span {
                     color: ${Colors.white};
                }
+          }
+
+          @media (max-width: ${Breakpoints.mobile}) {
+               flex-direction: column;
+               align-items: center;
           }
      }
 `;
@@ -61,6 +70,9 @@ export const Title = styled.h1`
      font-size: 18px;
      color: ${Colors.white};
      margin-bottom: 16px;
+     @media (max-width: ${Breakpoints.mobile}) {
+          font-size: 20px;
+     }
 `;
 
 export const Description = styled.p`
@@ -70,6 +82,11 @@ export const Description = styled.p`
      line-height: 22px;
      color: ${Colors.white};
      margin-bottom: 24px;
+     @media (max-width: ${Breakpoints.mobile}) {
+          text-align: justify;
+          width: 80%;
+          font-size: 16px;
+     }
 `;
 
 export const Button = styled.button`
@@ -81,6 +98,9 @@ export const Button = styled.button`
      padding: 8px 12px;
      cursor: pointer;
      border-radius: 4px;
+     @media (max-width: ${Breakpoints.mobile}) {
+          margin-top: 10px;
+     }
 `;
 
 export const ImageClose = styled.img`

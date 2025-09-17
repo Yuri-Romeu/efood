@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Colors } from '../../styles';
+import { Breakpoints, Colors } from '../../styles';
 import { IMaskInput } from 'react-imask';
 
 type Props = {
@@ -28,6 +28,10 @@ export const Input = styled.input<Props>`
      font-weight: 700;
      font-size: 14px;
      border: none;
+
+     @media (max-width: ${Breakpoints.mobile}) {
+          width: ${props => (props.size ? `${props.size - 40}px` : '100%')};
+     }
 
      &.error {
           border-color: #e63946;
@@ -66,6 +70,10 @@ export const MaskedInput = styled(IMaskInput)<Props>`
      font-weight: 700;
      font-size: 14px;
      border: none;
+
+     @media (max-width: ${Breakpoints.mobile}) {
+          width: ${props => (props.size ? `${props.size - 40}px` : '100%')};
+     }
 
      &.error {
           border-color: #e63946;

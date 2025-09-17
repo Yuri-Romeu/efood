@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import background from '../../assets/images/fundo.png';
-import { Colors } from '../../styles';
+import { Breakpoints, Colors } from '../../styles';
 
 type Props = {
      background: string;
@@ -24,6 +24,10 @@ export const Header = styled.div`
      h4.carrinho {
           cursor: pointer;
      }
+
+     @media (max-width: ${Breakpoints.mobile}) {
+          flex-direction: column;
+     }
 `;
 
 export const ImageContainer = styled.div<Props>`
@@ -44,4 +48,8 @@ export const Title = styled.h1<PropsTitle>`
      font-size: 32px;
      color: ${Colors.white};
      padding: ${props => (props.type === 'categoria' ? '25px 170px' : '32px 170px')};
+
+     @media (max-width: ${Breakpoints.mobile}) {
+          padding: ${props => (props.type === 'categoria' ? '25px 50px' : '32px 50px')};
+     }
 `;

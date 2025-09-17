@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Colors } from '../../styles';
+import { Breakpoints, Colors } from '../../styles';
 import trash from '../../assets/images/Lixeira.png';
 
 export const Container = styled.div`
@@ -33,6 +33,10 @@ export const Sidebar = styled.aside`
      padding: 16px 8px 0 8px;
      max-width: 360px;
      width: 100%;
+
+     @media (max-width: ${Breakpoints.mobile}) {
+          max-width: 300px;
+     }
 `;
 
 export const Dish = styled.div`
