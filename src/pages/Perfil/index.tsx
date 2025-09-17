@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import CardPerfil from '../../Components/CardPerfil';
 import HeaderPerfil from '../../Components/HeaderPerfil';
-import { Cards, Principal } from '../../styles';
+import { Cards, Main } from '../../styles';
 import Modal from '../../Components/Modal';
 import Payment from '../../Components/Payment';
 import { useSelector } from 'react-redux';
@@ -39,7 +39,7 @@ const Perfil = () => {
                {pratos && (
                     <HeaderPerfil cover={pratos.capa} name={pratos.titulo} type={pratos.tipo} />
                )}
-               <Principal>
+               <Main>
                     <Cards tipoCards="perfil">
                          {pratosPerfil.map(prato => (
                               <CardPerfil
@@ -57,7 +57,7 @@ const Perfil = () => {
                     {modalAberto && pratoSelecionado && (
                          <Modal dish={pratoSelecionado} onClose={() => setModalAberto(false)} />
                     )}
-               </Principal>
+               </Main>
 
                <Payment active={isOpenPayment} />
           </>

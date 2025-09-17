@@ -1,5 +1,5 @@
 import Card from '../../Components/Card';
-import { Cards, Principal } from '../../styles';
+import { Cards, Main } from '../../styles';
 import Hero from '../../containers/Hero';
 import { useGetRestaurantsQuery } from '../../services/api';
 import Loader from '../../Components/Loader';
@@ -11,7 +11,7 @@ const Home = () => {
           return (
                <>
                     <Hero />
-                    <Principal>
+                    <Main>
                          <Cards tipoCards="principal">
                               {cardapio.map(prato => (
                                    <Card
@@ -26,7 +26,7 @@ const Home = () => {
                                    />
                               ))}
                          </Cards>
-                    </Principal>
+                    </Main>
                </>
           );
      } else {
